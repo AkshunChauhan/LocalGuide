@@ -6,24 +6,18 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import XIcon from "@mui/icons-material/X";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Header from "../components/header";
+
 import MainFeaturedPost from "../components/mainfeaturedpost";
 import FeaturedPost from "../components/featuredpost";
 import Main from "../components/main";
 import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
+import Navbar from "../components/Navbar";
 
 const sections = [
-  { title: "Technology", url: "#" },
-  { title: "Design", url: "#" },
-  { title: "Culture", url: "#" },
-  { title: "Business", url: "#" },
-  { title: "Politics", url: "#" },
-  { title: "Opinion", url: "#" },
-  { title: "Science", url: "#" },
-  { title: "Health", url: "#" },
-  { title: "Style", url: "#" },
-  { title: "Travel", url: "#" },
+  { title: "Home", url: "#" },
+  { title: "About", url: "#" },
+  { title: "Profile", url: "#" },
 ];
 
 const mainFeaturedPost = {
@@ -85,8 +79,8 @@ export default function Blog() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
+      <Navbar />
       <Container maxWidth="lg">
-        <Header title="Blog" sections={sections} />
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
