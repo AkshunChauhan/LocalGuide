@@ -9,17 +9,17 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+
+// Import your logo image
+import Logo from '../assets/logo.png';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -51,7 +51,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
         width: '100%',
@@ -119,11 +118,6 @@ export default function Navbar(props) {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
-    const toggleThemeMode = () => {
-        const newThemeMode = themeMode === 'light' ? 'dark' : 'light';
-        setThemeMode(newThemeMode);
-    };
-
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -168,12 +162,20 @@ export default function Navbar(props) {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
-                        <MailIcon />
+                <IconButton size="large" color="inherit">
+                    <Badge badgeContent={0} color="error">
+                        <HomeIcon />
                     </Badge>
                 </IconButton>
-                <p>Messages</p>
+                <p>Home</p>
+            </MenuItem>
+            <MenuItem>
+                <IconButton size="large" color="inherit">
+                    <Badge badgeContent={0} color="error">
+                        <InfoIcon />
+                    </Badge>
+                </IconButton>
+                <p>About</p>
             </MenuItem>
             <MenuItem>
                 <IconButton
@@ -203,20 +205,12 @@ export default function Navbar(props) {
     );
 
     return (
-        <ThemeProvider theme={themeMode === 'light' ? lightTheme : darkTheme}>
+        <ThemeProvider theme={themeMode === 'dark' ? darkTheme : lightTheme}>
             <Box sx={{ flexGrow: 1 }}>
-                <ElevationScroll {...props}>
-                    <AppBar>
+                <ElevationScroll>
+                    <AppBar sx={{ bgcolor: '#000000' }}> {/* Set AppBar background color to black */}
                         <Toolbar>
-                            <IconButton
-                                size="large"
-                                edge="start"
-                                color="inherit"
-                                aria-label="open drawer"
-                                sx={{ mr: 2 }}
-                            >
-                                <MenuIcon />
-                            </IconButton>
+                            <img src={Logo} alt="Logo" style={{ height: 40, marginRight: 10 }} />
                             <Typography
                                 variant="h6"
                                 noWrap
@@ -236,30 +230,21 @@ export default function Navbar(props) {
                             </Search>
                             <Box sx={{ flexGrow: 1 }} />
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <Tabs
-                                    value={value}
-                                    onChange={handleChange}
-                                    aria-label="navigation tabs"
-                                >
-                                    <Tab label="Home" />
-                                    <Tab label="About" />
-                                </Tabs>
-                                <Box sx={{ ml: 2 }}>
-                                    <IconButton
-                                        size="large"
-                                        aria-label="toggle theme"
-                                        aria-haspopup="true"
-                                        onClick={toggleThemeMode}
-                                        color="inherit"
-                                    >
-                                        {themeMode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
-                                    </IconButton>
-                                </Box>
                             </Box>
                             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                                    <Badge badgeContent={4} color="error">
+                                <IconButton size="large" color="inherit">
+                                    <Badge badgeContent={0} color="error">
                                         <MailIcon />
+                                    </Badge>
+                                </IconButton>
+                                <IconButton size="large" color="inherit">
+                                    <Badge badgeContent={0} color="error">
+                                        <HomeIcon />
+                                    </Badge>
+                                </IconButton>
+                                <IconButton size="large" color="inherit">
+                                    <Badge badgeContent={0} color="error">
+                                        <InfoIcon />
                                     </Badge>
                                 </IconButton>
                                 <IconButton
@@ -305,4 +290,3 @@ export default function Navbar(props) {
         </ThemeProvider>
     );
 }
-
