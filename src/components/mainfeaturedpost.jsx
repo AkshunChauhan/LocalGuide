@@ -5,43 +5,49 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
+import { useState } from "react";
 
 function MainFeaturedPost(props) {
   const { post } = props;
+  const [expanded, setExpanded] = useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   return (
-    <Paper
-      sx={{
-        position: "relative",
-        backgroundColor: "grey.800",
-        color: "#fff",
-        mb: 4,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundImage: `url(${post.image})`,
-      }}
-    >
-      {/* Increase the priority of the hero background image */}
-      {
-        <img
-          style={{ display: "none" }}
-          src={post.image}
-          alt={post.imageText}
-        />
-      }
-      <Box
-        sx={{
-          position: "absolute",
-          top: 0,
-          bottom: 0,
-          right: 0,
-          left: 0,
-          backgroundColor: "rgba(0,0,0,.3)",
-        }}
-      />
-      <Grid container>
-        <Grid item md={6}>
+    <Grid container justifyContent="center">
+      <Grid item xs={12} md={8}>
+        <Paper
+          sx={{
+            position: "relative",
+            backgroundColor: "#000000",
+            color: "#fff",
+            mb: 4,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundImage: `url(${post.image})`,
+          }}
+        >
+          {/* Increase the priority of the hero background image */}
+          {
+            <img
+              style={{ display: "none" }}
+              src={post.image}
+              alt={post.imageText}
+            />
+          }
+          <Box
+            sx={{
+              position: "absolute",
+              top: 0,
+              bottom: 0,
+              right: 0,
+              left: 0,
+              backgroundColor: "rgba(0,0,0,.3)",
+            }}
+          />
           <Box
             sx={{
               position: "relative",
@@ -58,15 +64,20 @@ function MainFeaturedPost(props) {
               {post.title}
             </Typography>
             <Typography variant="h5" color="inherit" paragraph>
-              {post.description}
+              {expanded ? post.description : `${post.description.slice(0, 150)}...`}
+              <Link
+                component="button"
+                variant="subtitle1"
+                onClick={handleExpandClick}
+                sx={{ cursor: 'pointer', color: '#fff', ml: 1 }}
+              >
+                {expanded ? 'Show less' : post.linkText}
+              </Link>
             </Typography>
-            <Link variant="subtitle1" href="#">
-              {post.linkText}
-            </Link>
           </Box>
-        </Grid>
+        </Paper>
       </Grid>
-    </Paper>
+    </Grid>
   );
 }
 

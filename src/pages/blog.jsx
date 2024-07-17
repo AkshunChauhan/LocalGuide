@@ -5,8 +5,6 @@ import Container from "@mui/material/Container";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import XIcon from "@mui/icons-material/X";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 import MainFeaturedPost from "../components/mainfeaturedpost";
 import FeaturedPost from "../components/featuredpost";
 import Main from "../components/main";
@@ -14,16 +12,10 @@ import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
 import Navbar from "../components/Navbar";
 
-const sections = [
-  { title: "Home", url: "#" },
-  { title: "About", url: "#" },
-  { title: "Profile", url: "#" },
-];
-
 const mainFeaturedPost = {
-  title: "Title of a longer featured blog post",
+  title: "The Local Guide Red deer",
   description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+    "Welcome to The Local Guide Red Deer, your ultimate resource for international students arriving in Red Deer, Alberta. Designed exclusively for Red Deer, this site aims to connect newcomers with essential local services. Whether you're seeking accommodation, transportation options, grocery stores, or guidance on settling into the community, The Local Guide Red Deer provides comprehensive assistance. Our platform ensures that international students have everything they need to thrive in Red Deer, fostering a smooth and welcoming transition to life in this vibrant city.",
   image: "https://source.unsplash.com/random?wallpapers",
   imageText: "main image description",
   linkText: "Continue reading…",
@@ -72,37 +64,32 @@ const sidebar = {
   ],
 };
 
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
-
 export default function Blog() {
-  return (
-    <ThemeProvider theme={defaultTheme}>
-      <CssBaseline />
-      <Navbar />
-      <Container maxWidth="lg">
-        <main>
-          <MainFeaturedPost post={mainFeaturedPost} />
-          <Grid container spacing={4}>
-            {featuredPosts.map((post) => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
-          </Grid>
-          <Grid container spacing={5} sx={{ mt: 3 }}>
-            <Main title="From the firehose" />
-            <Sidebar
-              title={sidebar.title}
-              description={sidebar.description}
-              archives={sidebar.archives}
-              social={sidebar.social}
-            />
-          </Grid>
-        </main>
-      </Container>
-      <Footer
-        title="Footer"
-        description="Something here to give the footer a purpose!"
-      />
-    </ThemeProvider>
+  return (<div>X
+    <Navbar />
+    <Container maxWidth="lg">
+      <main>
+        <MainFeaturedPost post={mainFeaturedPost} />
+        <Grid container spacing={4}>
+          {featuredPosts.map((post) => (
+            <FeaturedPost key={post.title} post={post} />
+          ))}
+        </Grid>
+        <Grid container spacing={5} sx={{ mt: 3 }}>
+          <Main title="From the firehose" />
+          <Sidebar
+            title={sidebar.title}
+            description={sidebar.description}
+            archives={sidebar.archives}
+            social={sidebar.social}
+          />
+        </Grid>
+      </main>
+    </Container>
+    <Footer
+      title="Footer"
+      description="Something here to give the footer a purpose!"
+    />
+  </div>
   );
 }
