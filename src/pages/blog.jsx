@@ -11,6 +11,8 @@ import Main from "../components/main";
 import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
 import Navbar from "../components/Navbar";
+import Flage from "../components/flage";
+// import '../design/global.css';
 
 const mainFeaturedPost = {
   title: "The Local Guide Red deer",
@@ -69,6 +71,7 @@ export default function Blog() {
     <Navbar />
     <Container maxWidth="lg">
       <main>
+        <Flage />
         <MainFeaturedPost post={mainFeaturedPost} />
         <Grid container spacing={4}>
           {featuredPosts.map((post) => (

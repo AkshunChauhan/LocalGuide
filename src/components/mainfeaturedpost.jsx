@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import { useState } from "react";
+import Bg from '../assets/background.png';
 
 function MainFeaturedPost(props) {
   const { post } = props;
@@ -16,8 +17,8 @@ function MainFeaturedPost(props) {
   };
 
   return (
-    <Grid container justifyContent="center">
-      <Grid item xs={12} md={8}>
+    <Grid container justifyContent="center" sx={{ px: 2 }}>
+      <Grid item xs={12} md={12}>
         <Paper
           sx={{
             position: "relative",
@@ -30,7 +31,6 @@ function MainFeaturedPost(props) {
             backgroundImage: `url(${post.image})`,
           }}
         >
-          {/* Increase the priority of the hero background image */}
           {
             <img
               style={{ display: "none" }}
@@ -53,6 +53,7 @@ function MainFeaturedPost(props) {
               position: "relative",
               p: { xs: 3, md: 6 },
               pr: { md: 0 },
+              textAlign: 'center', // Center align the text
             }}
           >
             <Typography

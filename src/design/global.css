@@ -1,10 +1,31 @@
-/* global.css */
 body, html {
-    background-color: black;
-    color: white; /* Optional: Ensure text is visible against black background */
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.flag-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.animated-flag {
+  background-color: red; /* Add a background color for visibility */
+  animation: moveSideways 2s ease-in-out infinite alternate;
+}
+
+@keyframes moveSideways {
+  0% {
+      transform: translateX(0);
   }
-  
+  100% {
+      transform: translateX(10px);
+  }
+}
