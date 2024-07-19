@@ -10,17 +10,17 @@ import './design/global.css';
 
 function App() {
 
-	return (
-		<>
-			<BrowserRouter>
-				<LoadingBarContainer />
-				<Routes>
-					<Route path="/" element={<Blog />} exact />
-					<Route path="*" element={<NotFound />} />
-				</Routes>
-			</BrowserRouter>
-		</>
-	);
+  return (
+    <>
+      <BrowserRouter>
+        <LoadingBarContainer />
+        <Routes>
+          <Route path="/" element={<Blog />} exact />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
 }
 
 export default App;
