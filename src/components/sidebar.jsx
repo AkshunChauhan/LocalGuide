@@ -8,15 +8,15 @@ import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom'; // Import RouterLink for internal navigation
 
 function Sidebar(props) {
-  const { description, social, title, aboutLink } = props;
+  const { description, title, aboutLink } = props;
 
   return (
     <Grid item xs={12} md={4}>
-      <Paper elevation={0} sx={{ p: 2, bgcolor: 'grey.200' }}>
-        <Typography variant="h6" gutterBottom>
+      <Paper elevation={0} sx={{ p: 2, bgcolor: '#f0f0f0' }}> {/* Lighter gray background */}
+        <Typography variant="h6" gutterBottom sx={{ color: '#000000' }}> {/* Darker gray text */}
           {title}
         </Typography>
-        <Typography variant="body1">
+        <Typography variant="body1" sx={{ color: '#000000' }}> {/* Medium gray text */}
           {description}
         </Typography>
 
@@ -25,30 +25,12 @@ function Sidebar(props) {
           component={RouterLink}
           to={aboutLink} // Navigate to the about page
           variant="body1"
-          sx={{ display: 'block', mb: 0.5 }}
+          sx={{ display: 'block', mb: 0.5, color: '#0056b3', '&:hover': { color: '#003d7a' } }} // Bright blue with darker blue on hover
         >
           Learn more about us
         </Link>
       </Paper>
 
-      {/* Social Links */}
-      <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
-        Social
-      </Typography>
-      {social.map((network) => (
-        <Link
-          display="block"
-          variant="body1"
-          href="#"
-          key={network.name}
-          sx={{ mb: 0.5 }}
-        >
-          <Stack direction="row" spacing={1} alignItems="center">
-            <network.icon />
-            <span>{network.name}</span>
-          </Stack>
-        </Link>
-      ))}
     </Grid>
   );
 }

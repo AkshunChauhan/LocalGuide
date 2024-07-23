@@ -18,7 +18,7 @@ import Form from "../components/Form";
 const mainFeaturedPost = {
   title: "The Local Guide Red deer",
   description:
-    "Welcome to The Local Guide Red Deer, your ultimate resource for international students arriving in Red Deer, Alberta. Designed exclusively for Red Deer, this site aims to connect newcomers with essential local services. Whether you're seeking accommodation, transportation options, grocery stores, or guidance on settling into the community, The Local Guide Red Deer provides comprehensive assistance. Our platform ensures that international students have everything they need to thrive in Red Deer, fostering a smooth and welcoming transition to life in this vibrant city.",
+    "",
   image: "https://source.unsplash.com/random?wallpapers",
   imageText: "main image description",
   linkText: "Continue reading…",
