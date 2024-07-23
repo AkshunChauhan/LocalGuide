@@ -12,6 +12,7 @@ import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
 import Navbar from "../components/Navbar";
 import Flage from "../components/flage";
+import Form from "../components/Form";
 // import '../design/global.css';
 
 const mainFeaturedPost = {
@@ -45,20 +46,7 @@ const featuredPosts = [
 const sidebar = {
   title: "About",
   description:
-    "Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.",
-  archives: [
-    { title: "March 2020", url: "#" },
-    { title: "February 2020", url: "#" },
-    { title: "January 2020", url: "#" },
-    { title: "November 1999", url: "#" },
-    { title: "October 1999", url: "#" },
-    { title: "September 1999", url: "#" },
-    { title: "August 1999", url: "#" },
-    { title: "July 1999", url: "#" },
-    { title: "June 1999", url: "#" },
-    { title: "May 1999", url: "#" },
-    { title: "April 1999", url: "#" },
-  ],
+    "Welcome to The Local Guide Red Deer, your ultimate resource for international students arriving in Red Deer, Alberta. Designed exclusively for Red Deer, this site aims to connect newcomers with essential local services. Whether you're seeking accommodation, transportation options, grocery stores, or guidance on settling into the community, The Local Guide Red Deer provides comprehensive assistance. Our platform ensures that international students have everything they need to thrive in Red Deer, fostering a smooth and welcoming transition to life in this vibrant city.",
   social: [
     { name: "GitHub", icon: GitHubIcon },
     { name: "X", icon: XIcon },
@@ -78,13 +66,16 @@ export default function Blog() {
             <FeaturedPost key={post.title} post={post} />
           ))}
         </Grid>
+        <Grid item xs={12}>
+          <Form />
+        </Grid>
         <Grid container spacing={5} sx={{ mt: 3 }}>
           <Main title="From the firehose" />
           <Sidebar
             title={sidebar.title}
             description={sidebar.description}
-            archives={sidebar.archives}
             social={sidebar.social}
+            aboutLink="/about" // Add link to About page
           />
         </Grid>
       </main>

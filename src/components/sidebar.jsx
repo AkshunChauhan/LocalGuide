@@ -5,9 +5,10 @@ import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import { Link as RouterLink } from 'react-router-dom'; // Import RouterLink for internal navigation
 
 function Sidebar(props) {
-  const { archives, description, social, title } = props;
+  const { description, social, title, aboutLink } = props;
 
   return (
     <Grid item xs={12} md={4}>
@@ -15,16 +16,22 @@ function Sidebar(props) {
         <Typography variant="h6" gutterBottom>
           {title}
         </Typography>
-        <Typography>{description}</Typography>
-      </Paper>
-      <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
-        Archives
-      </Typography>
-      {archives.map((archive) => (
-        <Link display="block" variant="body1" href={archive.url} key={archive.title}>
-          {archive.title}
+        <Typography variant="body1">
+          {description}
+        </Typography>
+
+        {/* About Section */}
+        <Link
+          component={RouterLink}
+          to={aboutLink} // Navigate to the about page
+          variant="body1"
+          sx={{ display: 'block', mb: 0.5 }}
+        >
+          Learn more about us
         </Link>
-      ))}
+      </Paper>
+
+      {/* Social Links */}
       <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
         Social
       </Typography>
@@ -47,12 +54,6 @@ function Sidebar(props) {
 }
 
 Sidebar.propTypes = {
-  archives: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
   description: PropTypes.string.isRequired,
   social: PropTypes.arrayOf(
     PropTypes.shape({
@@ -61,6 +62,7 @@ Sidebar.propTypes = {
     }),
   ).isRequired,
   title: PropTypes.string.isRequired,
+  aboutLink: PropTypes.string.isRequired, // Add aboutLink to PropTypes
 };
 
 export default Sidebar;
