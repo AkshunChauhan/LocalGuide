@@ -12,8 +12,11 @@ import { styled } from "@mui/material/styles";
 const DarkCard = styled(Card)(({ theme }) => ({
   backgroundColor: '#1e1e1e', // Dark background
   color: '#ffffff', // Light text color
-  borderRadius: theme.shape.borderRadius, // Rounded corners
+  borderRadius: '16px', // More rounded corners
   boxShadow: theme.shadows[1], // Light shadow for a dark theme
+  height: '300px', // Increase the height of the card
+  position: 'relative', // Position relative for absolute child elements
+  overflow: 'hidden' // Hide overflow to maintain rounded corners
 }));
 
 const DarkCardActionArea = styled(CardActionArea)({
@@ -24,8 +27,21 @@ const DarkCardActionArea = styled(CardActionArea)({
 });
 
 const DarkCardMedia = styled(CardMedia)({
-  filter: 'brightness(0.7)', // Slightly darken image to match the theme
+  filter: 'brightness(0.)', // Slightly darken image to match the theme
+  position: 'absolute', // Position absolutely to cover entire card
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  zIndex: 0 // Set z-index to ensure it stays behind the content
+});
+
+const CardContentOverlay = styled(CardContent)({
+  position: 'relative', // Position relative to overlay on top of the background
+  zIndex: 1, // Set z-index to ensure it stays on top of the background
+  backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional: Add semi-transparent background for readability
   borderRadius: 'inherit', // Ensure the rounded corners are inherited
+  height: '100%', // Match the height of the card
 });
 
 function FeaturedPost(props) {
@@ -33,9 +49,16 @@ function FeaturedPost(props) {
 
   return (
     <Grid item xs={12} md={6}>
-      <DarkCardActionArea component="a" href="#">
+      <DarkCardActionArea component="a" href={post.link}>
         <DarkCard>
-          <CardContent sx={{ flex: 1 }}>
+          {post.image && (
+            <DarkCardMedia
+              component="img"
+              image={post.image}
+              alt={post.imageLabel}
+            />
+          )}
+          <CardContentOverlay>
             <Typography component="h2" variant="h5">
               {post.title}
             </Typography>
@@ -48,15 +71,7 @@ function FeaturedPost(props) {
             <Typography variant="subtitle1" color="primary">
               Continue reading...
             </Typography>
-          </CardContent>
-          {post.image && (
-            <DarkCardMedia
-              component="img"
-              sx={{ width: 160, display: { xs: "none", sm: "block" } }}
-              image={post.image}
-              alt={post.imageLabel}
-            />
-          )}
+          </CardContentOverlay>
         </DarkCard>
       </DarkCardActionArea>
     </Grid>
@@ -70,6 +85,7 @@ FeaturedPost.propTypes = {
     image: PropTypes.string,
     imageLabel: PropTypes.string,
     title: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired, // Link to the post or content
   }).isRequired,
 };
 

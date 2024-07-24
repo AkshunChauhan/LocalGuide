@@ -16,7 +16,17 @@ function Sidebar(props) {
         <Typography variant="h6" gutterBottom sx={{ color: '#000000' }}> {/* Darker gray text */}
           {title}
         </Typography>
-        <Typography variant="body1" sx={{ color: '#000000' }}> {/* Medium gray text */}
+        <Typography
+          variant="body1"
+          sx={{
+            color: '#000000',
+            display: '-webkit-box',
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            WebkitLineClamp: 3 // Adjust the number of lines to show
+          }}
+        >
           {description}
         </Typography>
 
@@ -25,24 +35,17 @@ function Sidebar(props) {
           component={RouterLink}
           to={aboutLink} // Navigate to the about page
           variant="body1"
-          sx={{ display: 'block', mb: 0.5, color: '#0056b3', '&:hover': { color: '#003d7a' } }} // Bright blue with darker blue on hover
+          sx={{ display: 'block', mt: 1, color: '#0056b3', '&:hover': { color: '#003d7a' } }} // Bright blue with darker blue on hover
         >
           Learn more about us
         </Link>
       </Paper>
-
     </Grid>
   );
 }
 
 Sidebar.propTypes = {
   description: PropTypes.string.isRequired,
-  social: PropTypes.arrayOf(
-    PropTypes.shape({
-      icon: PropTypes.elementType,
-      name: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
   title: PropTypes.string.isRequired,
   aboutLink: PropTypes.string.isRequired, // Add aboutLink to PropTypes
 };
