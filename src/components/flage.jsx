@@ -8,7 +8,12 @@ const flags = [
 
 function Flage() {
     return (
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            paddingTop: '1em' // Add padding to the top
+        }}>
             {flags.map(code => (
                 <ReactCountryFlag
                     key={code}

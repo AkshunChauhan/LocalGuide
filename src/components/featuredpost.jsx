@@ -39,7 +39,7 @@ const DarkCardMedia = styled(CardMedia)({
 const CardContentOverlay = styled(CardContent)({
   position: 'relative', // Position relative to overlay on top of the background
   zIndex: 1, // Set z-index to ensure it stays on top of the background
-  backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional: Add semi-transparent background for readability
+  backgroundColor: 'rgba(0, 0, 0, 0.6)', // Optional: Add semi-transparent background for readability
   borderRadius: 'inherit', // Ensure the rounded corners are inherited
   height: '100%', // Match the height of the card
 });
@@ -62,7 +62,7 @@ function FeaturedPost(props) {
             <Typography component="h2" variant="h5">
               {post.title}
             </Typography>
-            <Typography variant="subtitle1" color="text.secondary">
+            <Typography variant="subtitle1" color="#00FF00">
               {post.date}
             </Typography>
             <Typography variant="subtitle1" paragraph>

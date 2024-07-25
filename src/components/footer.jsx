@@ -5,15 +5,14 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button"; // Import Button component
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material'; // Import icons for social media
 
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://www.linkedin.com/in/akshunchauhan/">
-        Akshun Chauhan
+      <Link color="inherit" href="https://www.localguide.com">
+        Local Guide
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -69,19 +68,6 @@ function Footer(props) {
           <Link href="#" color="inherit">
             <LinkedIn sx={{ fontSize: 30, color: '#ffffff' }} />
           </Link>
-        </Stack>
-
-        {/* Newsletter Signup */}
-        <Stack spacing={2} alignItems="center" sx={{ mt: 4 }}>
-          <Typography variant="body2" align="center" sx={{ color: '#ffffff' }}>
-            Subscribe to our newsletter
-          </Typography>
-          <Stack direction="row" spacing={1} alignItems="center">
-            <input type="email" placeholder="Your email" style={{ padding: '8px', borderRadius: '4px' }} />
-            <Button variant="contained" sx={{ backgroundColor: '#0056b3', color: '#ffffff' }}>
-              Subscribe
-            </Button>
-          </Stack>
         </Stack>
 
         {/* Legal Information */}
