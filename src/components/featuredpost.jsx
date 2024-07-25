@@ -6,19 +6,63 @@ import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import { styled } from "@mui/material/styles";
+
+// Styled components for the dark theme with rounded corners
+const DarkCard = styled(Card)(({ theme }) => ({
+  backgroundColor: '#1e1e1e', // Dark background
+  color: '#ffffff', // Light text color
+  borderRadius: '16px', // More rounded corners
+  boxShadow: theme.shadows[1], // Light shadow for a dark theme
+  height: '300px', // Increase the height of the card
+  position: 'relative', // Position relative for absolute child elements
+  overflow: 'hidden' // Hide overflow to maintain rounded corners
+}));
+
+const DarkCardActionArea = styled(CardActionArea)({
+  borderRadius: 'inherit', // Ensure the rounded corners are inherited
+  '&:hover': {
+    backgroundColor: '#333333', // Slightly lighter dark background on hover
+  },
+});
+
+const DarkCardMedia = styled(CardMedia)({
+  filter: 'brightness(0.)', // Slightly darken image to match the theme
+  position: 'absolute', // Position absolutely to cover entire card
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  zIndex: 0 // Set z-index to ensure it stays behind the content
+});
+
+const CardContentOverlay = styled(CardContent)({
+  position: 'relative', // Position relative to overlay on top of the background
+  zIndex: 1, // Set z-index to ensure it stays on top of the background
+  backgroundColor: 'rgba(0, 0, 0, 0.6)', // Optional: Add semi-transparent background for readability
+  borderRadius: 'inherit', // Ensure the rounded corners are inherited
+  height: '100%', // Match the height of the card
+});
 
 function FeaturedPost(props) {
   const { post } = props;
 
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href="#">
-        <Card sx={{ display: "flex" }}>
-          <CardContent sx={{ flex: 1 }}>
+      <DarkCardActionArea component="a" href={post.link}>
+        <DarkCard>
+          {post.image && (
+            <DarkCardMedia
+              component="img"
+              image={post.image}
+              alt={post.imageLabel}
+            />
+          )}
+          <CardContentOverlay>
             <Typography component="h2" variant="h5">
               {post.title}
             </Typography>
-            <Typography variant="subtitle1" color="text.secondary">
+            <Typography variant="subtitle1" color="#00FF00">
               {post.date}
             </Typography>
             <Typography variant="subtitle1" paragraph>
@@ -27,15 +71,9 @@ function FeaturedPost(props) {
             <Typography variant="subtitle1" color="primary">
               Continue reading...
             </Typography>
-          </CardContent>
-          <CardMedia
-            component="img"
-            sx={{ width: 160, display: { xs: "none", sm: "block" } }}
-            image={post.image}
-            alt={post.imageLabel}
-          />
-        </Card>
-      </CardActionArea>
+          </CardContentOverlay>
+        </DarkCard>
+      </DarkCardActionArea>
     </Grid>
   );
 }
@@ -44,9 +82,10 @@ FeaturedPost.propTypes = {
   post: PropTypes.shape({
     date: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    imageLabel: PropTypes.string.isRequired,
+    image: PropTypes.string,
+    imageLabel: PropTypes.string,
     title: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired, // Link to the post or content
   }).isRequired,
 };
 

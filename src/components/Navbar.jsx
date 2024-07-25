@@ -17,6 +17,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
+import { Link as RouterLink } from 'react-router-dom'; // Import RouterLink for internal navigation
 
 // Import your logo image
 import Logo from '../assets/logo.png';
@@ -161,7 +162,7 @@ export default function Navbar(props) {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
+            <MenuItem component={RouterLink} to="/" onClick={handleMobileMenuClose}>
                 <IconButton size="large" color="inherit">
                     <Badge badgeContent={0} color="error">
                         <HomeIcon />
@@ -169,7 +170,7 @@ export default function Navbar(props) {
                 </IconButton>
                 <p>Home</p>
             </MenuItem>
-            <MenuItem>
+            <MenuItem component={RouterLink} to="/about" onClick={handleMobileMenuClose}>
                 <IconButton size="large" color="inherit">
                     <Badge badgeContent={0} color="error">
                         <InfoIcon />
@@ -232,19 +233,19 @@ export default function Navbar(props) {
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             </Box>
                             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                                <IconButton size="large" color="inherit">
-                                    <Badge badgeContent={0} color="error">
-                                        <MailIcon />
-                                    </Badge>
-                                </IconButton>
-                                <IconButton size="large" color="inherit">
+                                <IconButton component={RouterLink} to="/" size="large" color="inherit">
                                     <Badge badgeContent={0} color="error">
                                         <HomeIcon />
                                     </Badge>
                                 </IconButton>
-                                <IconButton size="large" color="inherit">
+                                <IconButton component={RouterLink} to="/about" size="large" color="inherit">
                                     <Badge badgeContent={0} color="error">
                                         <InfoIcon />
+                                    </Badge>
+                                </IconButton>
+                                <IconButton size="large" color="inherit">
+                                    <Badge badgeContent={0} color="error">
+                                        <MailIcon />
                                     </Badge>
                                 </IconButton>
                                 <IconButton
