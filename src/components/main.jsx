@@ -55,10 +55,20 @@ const Main = ({ title }) => {
           <ListItem>
             <Checkbox checked icon={<CheckCircleIcon />} />
             <ListItemText
-              primary={<Typography variant="body1"><strong>Utensils and Cutlery:</strong> We provide all the required utensils and cutlery, so you don't have to carry everything in your bag. This allows you to fit essential items that are actually important.</Typography>}
+              primary={<Typography variant="body1"><strong>Utensils and Cutlery:</strong> We provide all the required utensils and cutlery.</Typography>}
+            />
+          </ListItem>
+          <ListItem>
+            <Checkbox checked icon={<CheckCircleIcon />} />
+            <ListItemText
+              primary={<Typography variant="body1"><strong>Mattress:</strong> we will provide you a single or twin size mattress. <strong>(Limited Time offer)</strong></Typography>}
             />
           </ListItem>
         </List>
+        <Typography variant='h4' align="center">
+          <strong>$945/- Only</strong>
+        </Typography>
+
         <Typography variant="body1" paragraph>
           If you need more information or have any questions, please feel free to message us on any of our social media accounts or fill out the registration form below. Our team will contact you and assist you in moving forward.
         </Typography>

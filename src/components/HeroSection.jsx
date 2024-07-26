@@ -4,7 +4,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import TypingEffect from './TypingEffect'; // Ensure TypingEffect is correctly imported
-import '../design/global.css';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -16,16 +15,26 @@ import HeroImageSrc from '../assets/background.png'; // Adjust path if needed
 const HeroImage = styled('img')({
     width: '100%',
     height: 'auto',
-    maxWidth: '600px', // Adjust as needed
+    maxWidth: '100%', // Adjust as needed
     borderRadius: '8px',
+    // Ensure responsiveness
+    '@media (max-width:600px)': {
+        maxWidth: '90%',
+    },
 });
 
 const TypingTextContainer = styled(Box)({
     color: '#fff',
-    maxWidth: '600px', // Adjust as needed
+    maxWidth: '100%', // Ensure it takes full width of the container
     textAlign: 'left', // Align text to the left
     width: '100%', // Ensure it takes full width of the container
     fontFamily: 'Vergilia', // Apply title font
+    overflow: 'hidden', // Hide overflow
+    // Ensure responsiveness
+    '@media (max-width:600px)': {
+        textAlign: 'center',
+        fontSize: 'clamp(1rem, 4vw, 1.5rem)', // Adjust font size for smaller screens
+    },
 });
 
 const SocialMediaContainer = styled(Box)({
@@ -34,6 +43,10 @@ const SocialMediaContainer = styled(Box)({
     marginTop: '2rem',
     marginBottom: '2rem',
     width: '100%', // Ensure it takes full width of the container
+    // Ensure responsiveness
+    '@media (max-width:600px)': {
+        justifyContent: 'center',
+    },
 });
 
 const socialLinks = [
