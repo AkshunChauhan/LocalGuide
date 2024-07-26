@@ -6,12 +6,21 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material'; // Import icons for social media
+import { styled } from "@mui/material/styles";
+import logo from '../assets/logo.png'; // Import the logo image
+
+const Logo = styled('img')({
+  width: '100px', // Adjust size to reduce the logo size
+  height: 'auto',
+  display: 'block',
+  margin: '0 auto',
+});
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
+    <Typography variant="body2" color="#ffffff" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://www.localguide.com">
+      <Link color="inherit" href="https://www.local-guide-403.web.app">
         Local Guide
       </Link>{" "}
       {new Date().getFullYear()}
@@ -24,10 +33,13 @@ function Footer(props) {
   const { description, title } = props;
 
   return (
-    <Box component="footer" sx={{ bgcolor: '#1e1e1e', py: 6 }}> {/* Dark background for the footer */}
+    <Box component="footer" sx={{ bgcolor: '#1e1e1e', py: 6 }}>
       <Container maxWidth="lg">
-        <Typography variant="h6" align="center" gutterBottom sx={{ color: '#ffffff' }}>
-          {title}
+        {/* Logo */}
+        <Logo src={logo} alt="Local Guide Logo" />
+
+        <Typography variant="h6" align="center" gutterBottom sx={{ color: '#ffffff', mt: 2 }}>
+          The Local Guide
         </Typography>
         <Typography
           variant="subtitle1"
@@ -36,16 +48,21 @@ function Footer(props) {
           component="p"
           sx={{ color: '#ffffff' }}
         >
-          {description}
+          Start your life in Red Deer without worrying about a thing
         </Typography>
 
         {/* Navigation Links */}
-        <Stack direction="row" spacing={4} justifyContent="center" sx={{ mt: 2 }}>
-          <Link href="#" color="inherit">Home</Link>
-          <Link href="#" color="inherit">About</Link>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={4}
+          justifyContent="center"
+          sx={{ mt: 2 }}
+        >
+          <Link href="/" color="inherit">Home</Link>
+          <Link href="/about" color="inherit">About</Link>
           <Link href="#" color="inherit">Services</Link>
           <Link href="#" color="inherit">Contact</Link>
-          <Link href="#" color="inherit">Privacy Policy</Link>
+          <Link href="/privacy-policy" color="inherit">Privacy Policy</Link>
         </Stack>
 
         {/* Contact Information */}
@@ -55,25 +72,30 @@ function Footer(props) {
         </Typography>
 
         {/* Social Media Links */}
-        <Stack direction="row" spacing={2} justifyContent="center" sx={{ mt: 2 }}>
-          <Link href="#" color="inherit">
-            <Facebook sx={{ fontSize: 30, color: '#ffffff' }} />
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="center"
+          sx={{ mt: 2 }}
+        >
+          <Link href="https://facebook.com/your-profile" color="inherit" target="_blank" rel="noopener noreferrer">
+            <Facebook sx={{ fontSize: { xs: 24, sm: 30 }, color: '#ffffff' }} />
           </Link>
-          <Link href="#" color="inherit">
-            <Twitter sx={{ fontSize: 30, color: '#ffffff' }} />
+          <Link href="https://twitter.com/your-profile" color="inherit" target="_blank" rel="noopener noreferrer">
+            <Twitter sx={{ fontSize: { xs: 24, sm: 30 }, color: '#ffffff' }} />
           </Link>
-          <Link href="#" color="inherit">
-            <Instagram sx={{ fontSize: 30, color: '#ffffff' }} />
+          <Link href="https://instagram.com/your-profile" color="inherit" target="_blank" rel="noopener noreferrer">
+            <Instagram sx={{ fontSize: { xs: 24, sm: 30 }, color: '#ffffff' }} />
           </Link>
-          <Link href="#" color="inherit">
-            <LinkedIn sx={{ fontSize: 30, color: '#ffffff' }} />
+          <Link href="https://linkedin.com/in/your-profile" color="inherit" target="_blank" rel="noopener noreferrer">
+            <LinkedIn sx={{ fontSize: { xs: 24, sm: 30 }, color: '#ffffff' }} />
           </Link>
         </Stack>
 
         {/* Legal Information */}
         <Typography variant="body2" align="center" sx={{ mt: 2, color: '#ffffff' }}>
-          <Link href="#" color="inherit">Terms of Service</Link> |
-          <Link href="#" color="inherit">Privacy Policy</Link>
+          <Link href="/terms-of-service" color="inherit">Terms of Service</Link> |
+          <Link href="/privacy-policy" color="inherit">Privacy Policy</Link>
         </Typography>
 
         <Copyright />

@@ -21,13 +21,18 @@ const DarkCard = styled(Card)(({ theme }) => ({
 
 const DarkCardActionArea = styled(CardActionArea)({
   borderRadius: 'inherit', // Ensure the rounded corners are inherited
+  position: 'absolute', // Cover the entire card
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
   '&:hover': {
-    backgroundColor: '#333333', // Slightly lighter dark background on hover
+    backgroundColor: 'transparent', // Remove background color change on hover
   },
 });
 
 const DarkCardMedia = styled(CardMedia)({
-  filter: 'brightness(0.)', // Slightly darken image to match the theme
+  filter: 'brightness(0.5)', // Slightly darken image to match the theme
   position: 'absolute', // Position absolutely to cover entire card
   top: 0,
   left: 0,
@@ -49,8 +54,8 @@ function FeaturedPost(props) {
 
   return (
     <Grid item xs={12} md={6}>
-      <DarkCardActionArea component="a" href={post.link}>
-        <DarkCard>
+      <DarkCard>
+        <DarkCardActionArea component="a" href={post.link}>
           {post.image && (
             <DarkCardMedia
               component="img"
@@ -72,8 +77,8 @@ function FeaturedPost(props) {
               Continue reading...
             </Typography>
           </CardContentOverlay>
-        </DarkCard>
-      </DarkCardActionArea>
+        </DarkCardActionArea>
+      </DarkCard>
     </Grid>
   );
 }

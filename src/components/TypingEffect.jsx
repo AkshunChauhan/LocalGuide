@@ -3,8 +3,8 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
 const TypingText = styled(Typography)(({ theme }) => ({
-    fontSize: '2rem', // Adjust size as needed
-    whiteSpace: 'pre', // Preserve whitespace
+    fontSize: 'clamp(1.5rem, 5vw, 2rem)', // Responsive font size
+    whiteSpace: 'pre-wrap', // Preserve whitespace and wrap text
     overflow: 'hidden', // Hide overflow
     display: 'inline-block', // Allows animation
     borderRight: '2px solid', // Cursor effect
@@ -23,9 +23,8 @@ function TypingEffect({ messages, speed = 100, deleteSpeed = 50 }) {
     useEffect(() => {
         const currentMessage = messages[currentIndex];
         const typingSpeed = isDeleting ? deleteSpeed : speed;
-        const maxLength = currentMessage.length;
 
-        const timer = setInterval(() => {
+        const handleTyping = () => {
             setDisplayedText(prev => {
                 if (isDeleting) {
                     return prev.slice(0, -1);
@@ -34,15 +33,17 @@ function TypingEffect({ messages, speed = 100, deleteSpeed = 50 }) {
                 }
             });
 
-            if (!isDeleting && displayedText.length === maxLength) {
+            if (!isDeleting && displayedText.length === currentMessage.length) {
                 setIsDeleting(true);
             } else if (isDeleting && displayedText.length === 0) {
                 setIsDeleting(false);
                 setCurrentIndex(prev => (prev + 1) % messages.length);
             }
-        }, typingSpeed);
+        };
 
-        return () => clearInterval(timer);
+        const timer = setTimeout(handleTyping, typingSpeed);
+
+        return () => clearTimeout(timer);
     }, [displayedText, currentIndex, isDeleting, messages, speed, deleteSpeed]);
 
     return <TypingText>{displayedText}</TypingText>;

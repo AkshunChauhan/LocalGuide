@@ -1,4 +1,3 @@
-// src/pages/AboutPage.jsx
 import * as React from "react";
 import { Container, Typography, Button, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -29,7 +28,18 @@ const DarkButton = styled(Button)(({ theme }) => ({
 const AboutPage = () => {
     const navigate = useNavigate();
 
+    React.useEffect(() => {
+        // Check if the cookie is set
+        const hasSubmitted = document.cookie.split(';').some((item) => item.trim().startsWith('hasSubmitted='));
+        if (hasSubmitted) {
+            // Redirect or show a message if already submitted
+            navigate('/thank-you'); // Adjust the route as needed
+        }
+    }, [navigate]);
+
     const handleBack = () => {
+        // Set a cookie to indicate the page has been submitted
+        document.cookie = "hasSubmitted=true; path=/";
         navigate(-1); // Navigate back to the previous page
     };
 

@@ -15,6 +15,7 @@ import Navbar from "../components/Navbar";
 import Flage from "../components/flage";
 import Form from "../components/Form";
 import HeroSection from "../components/HeroSection"; // Import the HeroSection component
+import '../design/global.css';
 
 import image1 from "../assets/image1.jpg"; // Adjust the path according to your project structure
 import image2 from "../assets/image2.jpg"; // Adjust the path according to your project structure
@@ -60,33 +61,6 @@ export default function Blog() {
       <Container maxWidth="lg">
         <main>
           <HeroSection /> {/* Add the HeroSection component here */}
-
-          {/* Social Media Section */}
-          <div style={{
-            marginTop: '2rem',
-            marginBottom: '2rem',
-            textAlign: 'center'
-          }}>
-            <div>
-              {socialLinks.map((network) => (
-                <a
-                  key={network.name}
-                  href={network.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    marginRight: '1rem',
-                    color: network.color,
-                    fontSize: '2rem', // Increase icon size
-                    padding: '0.5rem', // Add padding to icons
-                  }}
-                >
-                  <network.icon fontSize="inherit" />
-                </a>
-              ))}
-            </div>
-          </div>
-
           <Grid container spacing={3}>
             {featuredPosts.map((post) => (
               <FeaturedPost key={post.title} post={post} />
