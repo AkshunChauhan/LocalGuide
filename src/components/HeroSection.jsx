@@ -58,7 +58,7 @@ const socialLinks = [
 
 export default function HeroSection() {
     return (
-        <Grid container sx={{ minHeight: '100vh', backgroundColor: '#000', p: 4 }}>
+        <Grid container sx={{ minHeight: '50vh', backgroundColor: '#000', p: 2 }}>
             <Grid item xs={12} md={6} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <TypingTextContainer>
                     <Typography variant="h3" color="white" sx={{ fontFamily: 'Vergilia' }}>
@@ -88,7 +88,7 @@ export default function HeroSection() {
                         style={{
                             marginRight: '1rem',
                             color: network.color,
-                            fontSize: '2rem', // Increase icon size
+                            fontSize: '3rem', // Increase icon size
                             padding: '0.5rem', // Add padding to icons
                         }}
                     >

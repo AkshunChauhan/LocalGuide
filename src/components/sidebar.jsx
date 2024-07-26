@@ -12,7 +12,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 function Sidebar(props) {
-  const { description, title, aboutLink, socialLinks = {} } = props; // Provide default empty object for socialLinks
+  const { description, title, aboutLink, termsLink, socialLinks = {} } = props;
 
   // Ensure socialLinks have default values if not provided
   const socialLinksWithDefaults = {
@@ -45,28 +45,55 @@ function Sidebar(props) {
         {/* About Section */}
         <Link
           component={RouterLink}
-          to={aboutLink} // Navigate to the about page
+          to={aboutLink}
           variant="body1"
           sx={{ display: 'block', mt: 1, color: '#0056b3', '&:hover': { color: '#003d7a' } }} // Bright blue with darker blue on hover
         >
           Learn more about us
         </Link>
+      </Paper>
 
-        {/* Social Media Icons */}
-        <Stack direction="row" spacing={2} sx={{ mt: 4 }}> {/* Adjust mt value for spacing */}
-          <Link href={socialLinksWithDefaults.facebook} target="_blank" rel="noopener noreferrer">
-            <FacebookIcon sx={{ color: '#4267B2', '&:hover': { color: '#365899' } }} />
+      <Stack direction="row" spacing={2} sx={{ mt: 4 }}>
+        <Link href={socialLinksWithDefaults.facebook} target="_blank" rel="noopener noreferrer">
+          <FacebookIcon sx={{ color: '#4267B2', '&:hover': { color: '#365899' } }} />
+        </Link>
+        <Link href={socialLinksWithDefaults.twitter} target="_blank" rel="noopener noreferrer">
+          <TwitterIcon sx={{ color: '#1DA1F2', '&:hover': { color: '#0d95e8' } }} />
+        </Link>
+        <Link href={socialLinksWithDefaults.instagram} target="_blank" rel="noopener noreferrer">
+          <InstagramIcon sx={{ color: '#C13584', '&:hover': { color: '#bc2a8d' } }} />
+        </Link>
+        <Link href={socialLinksWithDefaults.linkedin} target="_blank" rel="noopener noreferrer">
+          <LinkedInIcon sx={{ color: '#0077b5', '&:hover': { color: '#005582' } }} />
+        </Link>
+      </Stack>
+
+      {/* Terms and Conditions Section */}
+      <Paper elevation={0} sx={{ p: 2, bgcolor: '#e0e0e0', mt: 4 }}>
+        <Typography variant="h6" gutterBottom sx={{ color: '#000000' }}>
+          Terms and Conditions
+        </Typography>
+        <Typography variant="body1" sx={{ color: '#000000' }}>
+          The package terms are summarized as follows:
+          <ul>
+            <li>Non-refundable once services have commenced.</li>
+            <li>Airport pickup is available from Edmonton and Calgary airports only.</li>
+            <li>Accommodation includes a two-week stay; long-term accommodation assistance is provided after this period.</li>
+            <li>Basic groceries are provided, but specific dietary needs are not covered.</li>
+            <li>Shopping assistance is guided but does not cover purchase costs.</li>
+            <li>Document preparation assistance is limited to guidance; legal services are not provided.</li>
+            <li>Orientation includes a one-time tour and guidance session.</li>
+            <li>Utensils and cutlery are basic and sufficient for one person.</li>
+          </ul>
+          <Link
+            component={RouterLink}
+            to={termsLink}
+            variant="body1"
+            sx={{ display: 'block', mt: 2, color: '#0056b3', '&:hover': { color: '#003d7a' } }} // Bright blue with darker blue on hover
+          >
+            Read more
           </Link>
-          <Link href={socialLinksWithDefaults.twitter} target="_blank" rel="noopener noreferrer">
-            <TwitterIcon sx={{ color: '#1DA1F2', '&:hover': { color: '#0d95e8' } }} />
-          </Link>
-          <Link href={socialLinksWithDefaults.instagram} target="_blank" rel="noopener noreferrer">
-            <InstagramIcon sx={{ color: '#C13584', '&:hover': { color: '#bc2a8d' } }} />
-          </Link>
-          <Link href={socialLinksWithDefaults.linkedin} target="_blank" rel="noopener noreferrer">
-            <LinkedInIcon sx={{ color: '#0077b5', '&:hover': { color: '#005582' } }} />
-          </Link>
-        </Stack>
+        </Typography>
       </Paper>
     </Grid>
   );
@@ -75,7 +102,8 @@ function Sidebar(props) {
 Sidebar.propTypes = {
   description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  aboutLink: PropTypes.string.isRequired, // Add aboutLink to PropTypes
+  aboutLink: PropTypes.string.isRequired,
+  termsLink: PropTypes.string.isRequired, // Add termsLink to PropTypes
   socialLinks: PropTypes.shape({
     facebook: PropTypes.string,
     twitter: PropTypes.string,

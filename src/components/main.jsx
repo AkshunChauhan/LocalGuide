@@ -66,7 +66,7 @@ const Main = ({ title }) => {
           </ListItem>
         </List>
         <Typography variant='h4' align="center">
-          <strong>$945/- Only</strong>
+          <strong>$949/- Only</strong>
         </Typography>
 
         <Typography variant="body1" paragraph>
