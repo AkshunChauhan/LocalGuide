@@ -4,6 +4,11 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import TypingEffect from './TypingEffect'; // Ensure TypingEffect is correctly imported
+import '../design/global.css';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 // Import the image correctly
 import HeroImageSrc from '../assets/background.png'; // Adjust path if needed
@@ -20,14 +25,30 @@ const TypingTextContainer = styled(Box)({
     maxWidth: '600px', // Adjust as needed
     textAlign: 'left', // Align text to the left
     width: '100%', // Ensure it takes full width of the container
+    fontFamily: 'Vergilia', // Apply title font
 });
+
+const SocialMediaContainer = styled(Box)({
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '2rem',
+    marginBottom: '2rem',
+    width: '100%', // Ensure it takes full width of the container
+});
+
+const socialLinks = [
+    { name: "Facebook", icon: FacebookIcon, url: "https://facebook.com/your-profile", color: "#1877f2" },
+    { name: "Twitter", icon: TwitterIcon, url: "https://twitter.com/your-profile", color: "#1da1f2" },
+    { name: "Instagram", icon: InstagramIcon, url: "https://instagram.com/your-profile", color: "#c13584" },
+    { name: "LinkedIn", icon: LinkedInIcon, url: "https://linkedin.com/in/your-profile", color: "#0077b5" },
+];
 
 export default function HeroSection() {
     return (
         <Grid container sx={{ minHeight: '100vh', backgroundColor: '#000', p: 4 }}>
             <Grid item xs={12} md={6} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <TypingTextContainer>
-                    <Typography variant="h3" color="white">
+                    <Typography variant="h3" color="white" sx={{ fontFamily: 'Vergilia' }}>
                         <TypingEffect
                             messages={[
                                 "Hi, welcome to the local guide.",
@@ -43,6 +64,25 @@ export default function HeroSection() {
             <Grid item xs={12} md={6} sx={{ display: 'flex', alignItems: 'center' }}>
                 <HeroImage src={HeroImageSrc} alt="Hero Image" /> {/* Use imported image */}
             </Grid>
+            {/* Social Media Section */}
+            <SocialMediaContainer>
+                {socialLinks.map((network) => (
+                    <a
+                        key={network.name}
+                        href={network.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            marginRight: '1rem',
+                            color: network.color,
+                            fontSize: '2rem', // Increase icon size
+                            padding: '0.5rem', // Add padding to icons
+                        }}
+                    >
+                        <network.icon fontSize="inherit" />
+                    </a>
+                ))}
+            </SocialMediaContainer>
         </Grid>
     );
 }

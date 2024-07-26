@@ -37,7 +37,7 @@ const Main = ({ title }) => {
           <ListItem>
             <Checkbox checked icon={<CheckCircleIcon />} />
             <ListItemText
-              primary={<Typography variant="body1"><strong>Essential Shopping:</strong> Assistance with getting your essential shopping done.</Typography>}
+              primary={<Typography variant="body1"><strong>Assistance with Shopping:</strong> guide to to get all the required winter gear etc.</Typography>}
             />
           </ListItem>
           <ListItem>

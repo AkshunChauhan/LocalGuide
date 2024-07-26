@@ -21,11 +21,39 @@ body, html {
   animation: moveSideways 2s ease-in-out infinite alternate;
 }
 
-@keyframes moveSideways {
-  0% {
-      transform: translateX(0);
-  }
-  100% {
-      transform: translateX(10px);
-  }
+@font-face {
+  font-family: 'Sparky Stones';
+  src: url('/src/design/sparky-stones.woff2') format('woff2'),
+       url('/src/design/sparky-stones.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Vergilia';
+  src: url('/src/design/vergilia.woff2') format('woff2'),
+       url('/src/design/vergilia.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arial Rounded MT';
+  src: local('Arial Rounded MT Bold'), local('ArialRoundedMTBold'),
+       url('/src/design/arial-rounded-mt.woff2') format('woff2'),
+       url('/src/design/arial-rounded-mt.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Arial Rounded MT', Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Vergilia', serif;
+}
+
+.title {
+  font-family: 'Sparky Stones', cursive;
 }
