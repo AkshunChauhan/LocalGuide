@@ -140,8 +140,9 @@ export default function Navbar(props) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem component={RouterLink} to="/signup" onClick={handleMenuClose}>Profile</MenuItem>
+            <MenuItem component={RouterLink} to="/profile" onClick={handleMenuClose}>My account</MenuItem>
+
         </Menu>
     );
 
@@ -190,7 +191,7 @@ export default function Navbar(props) {
                 </IconButton>
                 <p>Notifications</p>
             </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
+            <MenuItem component={RouterLink} to="/signup" onClick={handleMobileMenuClose}>
                 <IconButton
                     size="large"
                     aria-label="account of current user"
