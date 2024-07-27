@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Container, Typography, Button, Paper } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Paper, Typography, Grid, Button, Container } from "@mui/material"; // Ensure Button and Container are imported
 import Footer from "../components/footer";
 import Navbar from "../components/Navbar";
 import Flage from "../components/flage";
 import FeedbackForm from "../components/feedback"; // Ensure this path is correct
 import { styled } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom"; // Make sure this import is correct
 
 // Styled component for Paper with dark theme
 const DarkPaper = styled(Paper)(({ theme }) => ({
