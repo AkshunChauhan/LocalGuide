@@ -10,16 +10,17 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 function Sidebar(props) {
   const { description, title, aboutLink, termsLink, socialLinks = {} } = props;
 
   // Ensure socialLinks have default values if not provided
   const socialLinksWithDefaults = {
-    facebook: socialLinks.facebook || '#',
-    twitter: socialLinks.twitter || '#',
-    instagram: socialLinks.instagram || '#',
-    linkedin: socialLinks.linkedin || '#',
+    facebook: socialLinks.facebook || 'https://www.facebook.com/profile.php?id=61563500187171',
+    YouTube: socialLinks.youtube || 'https://www.youtube.com/channel/UCMIyYjk51pHLo_Yt9v-dsUw',
+    instagram: socialLinks.instagram || 'https://www.instagram.com/localguidereddeer/',
+    linkedin: socialLinks.linkedin || 'https://www.linkedin.com/company/104102674/admin/dashboard/',
   };
 
   return (
@@ -58,7 +59,7 @@ function Sidebar(props) {
           <FacebookIcon sx={{ color: '#4267B2', '&:hover': { color: '#365899' } }} />
         </Link>
         <Link href={socialLinksWithDefaults.twitter} target="_blank" rel="noopener noreferrer">
-          <TwitterIcon sx={{ color: '#1DA1F2', '&:hover': { color: '#0d95e8' } }} />
+          <YouTubeIcon sx={{ color: '#ff0000', '&:hover': { color: '#ff0000' } }} />
         </Link>
         <Link href={socialLinksWithDefaults.instagram} target="_blank" rel="noopener noreferrer">
           <InstagramIcon sx={{ color: '#C13584', '&:hover': { color: '#bc2a8d' } }} />

@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
                 Privacy Policy
             </Typography>
             <Typography variant="body1" paragraph>
-                Last Updated: [Date]
+                Last Updated: 28/07/2024
             </Typography>
             <Typography variant="h6" gutterBottom>
                 1. Introduction
@@ -86,9 +86,9 @@ const PrivacyPolicy = () => {
             </Typography>
             <Typography variant="body1" paragraph>
                 The Local Guide<br />
-                [Your Address]<br />
-                [Your Email Address]<br />
-                [Your Phone Number]
+                4250 54 Ave, Red Deer,AB<br />
+                thelocalguide41@gmail.com<br />
+                +1(403)-890-7824
             </Typography>
         </Container>
     );

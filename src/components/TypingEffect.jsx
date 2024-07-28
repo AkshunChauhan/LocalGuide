@@ -5,13 +5,22 @@ import { styled } from '@mui/material/styles';
 const TypingText = styled(Typography)(({ theme }) => ({
     fontSize: 'clamp(1.5rem, 5vw, 2rem)', // Responsive font size
     whiteSpace: 'pre-wrap', // Preserve whitespace and wrap text
-    overflow: 'hidden', // Hide overflow
     display: 'inline-block', // Allows animation
-    borderRight: '2px solid', // Cursor effect
-    animation: 'blink 1s step-end infinite', // Blinking cursor
+    position: 'relative', // For absolute positioning of the cursor
+    '&::after': {
+        content: '""',
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        bottom: 0,
+        width: '2px',
+        backgroundColor: 'white', // Cursor color
+        animation: 'blink 1s step-end infinite', // Blinking cursor
+    },
     '@keyframes blink': {
-        '0%': { borderColor: 'transparent' },
-        '100%': { borderColor: 'white' },
+        '0%': { opacity: 1 },
+        '50%': { opacity: 0 },
+        '100%': { opacity: 1 },
     },
 }));
 
@@ -46,7 +55,11 @@ function TypingEffect({ messages, speed = 100, deleteSpeed = 50 }) {
         return () => clearTimeout(timer);
     }, [displayedText, currentIndex, isDeleting, messages, speed, deleteSpeed]);
 
-    return <TypingText>{displayedText}</TypingText>;
+    return (
+        <div style={{ height: '8rem', display: 'flex', alignItems: 'center' }}> {/* Adjust this height as needed */}
+            <TypingText>{displayedText}</TypingText>
+        </div>
+    );
 }
 
 export default TypingEffect;

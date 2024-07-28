@@ -5,12 +5,13 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import TypingEffect from './TypingEffect'; // Ensure TypingEffect is correctly imported
 import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 // Import the image correctly
 import HeroImageSrc from '../assets/background.png'; // Adjust path if needed
+import { YouTube } from '@mui/icons-material';
 
 const HeroImage = styled('img')({
     width: '100%',
@@ -50,10 +51,10 @@ const SocialMediaContainer = styled(Box)({
 });
 
 const socialLinks = [
-    { name: "Facebook", icon: FacebookIcon, url: "https://facebook.com/your-profile", color: "#1877f2" },
-    { name: "Twitter", icon: TwitterIcon, url: "https://twitter.com/your-profile", color: "#1da1f2" },
-    { name: "Instagram", icon: InstagramIcon, url: "https://instagram.com/your-profile", color: "#c13584" },
-    { name: "LinkedIn", icon: LinkedInIcon, url: "https://linkedin.com/in/your-profile", color: "#0077b5" },
+    { name: "Facebook", icon: FacebookIcon, url: "https://www.facebook.com/profile.php?id=61563500187171", color: "#1877f2" },
+    { name: "YouTube", icon: YouTube, url: "https://www.youtube.com/channel/UCMIyYjk51pHLo_Yt9v-dsUw", color: "#ff0000" },
+    { name: "Instagram", icon: InstagramIcon, url: "https://www.instagram.com/localguidereddeer/", color: "#c13584" },
+    { name: "LinkedIn", icon: LinkedInIcon, url: "https://www.linkedin.com/company/104102674/admin/dashboard/s", color: "#0077b5" },
 ];
 
 export default function HeroSection() {
