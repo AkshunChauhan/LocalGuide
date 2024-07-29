@@ -9,7 +9,7 @@ const TermsAndConditions = () => {
                 Terms and Conditions
             </Typography>
             <Typography variant="body1" paragraph>
-                Last Updated: [Date]
+                Last Updated: 28/07/2024
             </Typography>
             <Typography variant="body1" paragraph>
                 Welcome to our Terms and Conditions section. By using our services, you agree to the following terms:
@@ -136,7 +136,13 @@ const TermsAndConditions = () => {
                 10. Contact Us
             </Typography>
             <Typography variant="body1" paragraph>
-                If you have any questions or concerns about these Terms and Conditions, please contact us at [Your Contact Email Address].
+                If you have any questions or concerns about these Terms and Conditions, please contact us at thelocalguide41@gmail.com
+            </Typography>
+            <Typography variant="body1" paragraph>
+                Contact info<br />
+                4250 54 Ave, Red Deer,AB<br />
+                thelocalguide41@gmail.com<br />
+                +1(403)-890-7824
             </Typography>
         </Container>
     );

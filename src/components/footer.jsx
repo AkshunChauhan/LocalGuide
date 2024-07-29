@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
-import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material'; // Import icons for social media
+import { Facebook, YouTube, Instagram, LinkedIn } from '@mui/icons-material'; // Import icons for social media
 import { styled } from "@mui/material/styles";
 import logo from '../assets/logo.png'; // Import the logo image
 
@@ -20,7 +20,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="#ffffff" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://www.local-guide-403.web.app">
+      <Link color="inherit" href="https://local-guide-403.web.app/">
         Local Guide
       </Link>{" "}
       {new Date().getFullYear()}
@@ -67,8 +67,8 @@ function Footer(props) {
 
         {/* Contact Information */}
         <Typography variant="body2" align="center" sx={{ mt: 2, color: '#ffffff' }}>
-          <Link href="mailto:contact@example.com" color="inherit">contact@example.com</Link> |
-          <Link href="tel:+1234567890" color="inherit"> +1 (234) 567-890</Link>
+          <Link href="mailto:thelocalguide41@gmail.com" color="inherit">thelocalguide41@gmail.com</Link> |
+          <Link href="tel:+14038905824" color="inherit"> +1 (403) 890-7824</Link>
         </Typography>
 
         {/* Social Media Links */}
@@ -78,16 +78,16 @@ function Footer(props) {
           justifyContent="center"
           sx={{ mt: 2 }}
         >
-          <Link href="https://facebook.com/your-profile" color="inherit" target="_blank" rel="noopener noreferrer">
+          <Link href="https://www.facebook.com/profile.php?id=61563500187171" color="inherit" target="_blank" rel="noopener noreferrer">
             <Facebook sx={{ fontSize: { xs: 24, sm: 30 }, color: '#ffffff' }} />
           </Link>
-          <Link href="https://twitter.com/your-profile" color="inherit" target="_blank" rel="noopener noreferrer">
-            <Twitter sx={{ fontSize: { xs: 24, sm: 30 }, color: '#ffffff' }} />
+          <Link href="https://www.youtube.com/channel/UCMIyYjk51pHLo_Yt9v-dsUw" color="inherit" target="_blank" rel="noopener noreferrer">
+            <YouTube sx={{ fontSize: { xs: 24, sm: 30 }, color: '#ffffff' }} />
           </Link>
-          <Link href="https://instagram.com/your-profile" color="inherit" target="_blank" rel="noopener noreferrer">
+          <Link href="https://www.instagram.com/localguidereddeer/" color="inherit" target="_blank" rel="noopener noreferrer">
             <Instagram sx={{ fontSize: { xs: 24, sm: 30 }, color: '#ffffff' }} />
           </Link>
-          <Link href="https://linkedin.com/in/your-profile" color="inherit" target="_blank" rel="noopener noreferrer">
+          <Link href="https://www.linkedin.com/company/104102674/" color="inherit" target="_blank" rel="noopener noreferrer">
             <LinkedIn sx={{ fontSize: { xs: 24, sm: 30 }, color: '#ffffff' }} />
           </Link>
         </Stack>

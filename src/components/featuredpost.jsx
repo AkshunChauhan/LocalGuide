@@ -67,7 +67,7 @@ function FeaturedPost(props) {
             <Typography component="h2" variant="h5">
               {post.title}
             </Typography>
-            <Typography variant="subtitle1" color="#00FF00">
+            <Typography variant="subtitle1" color="#FFA500">
               {post.date}
             </Typography>
             <Typography variant="subtitle1" paragraph>
