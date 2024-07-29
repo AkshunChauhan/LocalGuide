@@ -6,6 +6,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import Box from "@mui/material/Box";
 import MainFeaturedPost from "../components/mainfeaturedpost";
 import FeaturedPost from "../components/featuredpost";
 import Main from "../components/main";
@@ -15,6 +16,7 @@ import Navbar from "../components/Navbar";
 import Flage from "../components/flage";
 import Form from "../components/Form";
 import HeroSection from "../components/HeroSection"; // Import the HeroSection component
+import Calculate from "../components/Calculator";
 import '../design/global.css';
 
 import image1 from "../assets/image1.jpg"; // Adjust the path according to your project structure
@@ -75,12 +77,17 @@ export default function Blog() {
               aboutLink="/about" // Add link to About page
             />
           </Grid>
-          <Flage />
+          <Grid>
+            <Calculate />
+          </Grid>
           <Grid item xs={12}>
             <Form />
           </Grid>
         </main>
       </Container>
+      <Box sx={{ pb: 2 }}> {/* Add padding-bottom here */}
+        <Flage />
+      </Box>
       <Footer
         title="Footer"
         description="Something here to give the footer a purpose!"

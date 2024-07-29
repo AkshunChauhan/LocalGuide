@@ -64,6 +64,12 @@ const Main = ({ title }) => {
               primary={<Typography variant="body1"><strong>Mattress:</strong> we will provide you a single or twin size mattress. <strong>(Limited Time offer)</strong></Typography>}
             />
           </ListItem>
+          <ListItem>
+            <Checkbox checked icon={<CheckCircleIcon />} />
+            <ListItemText
+              primary={<Typography variant="body1"><strong>Internat Access:</strong> we will provide you unlimited internet upon your arrival for next 2 weeks.</Typography>}
+            />
+          </ListItem>
         </List>
         <Typography variant='h4' align="center">
           <strong>$949/- Only</strong>

@@ -18,6 +18,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { Link as RouterLink } from 'react-router-dom'; // Import RouterLink for internal navigation
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"; // Import Firebase authentication
 
 // Import your logo image
 import Logo from '../assets/logo.png';
@@ -98,6 +99,16 @@ export default function Navbar(props) {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const [themeMode, setThemeMode] = React.useState('light'); // State to manage theme mode
     const [value, setValue] = React.useState(0); // State to manage tab selection
+    const [isLoggedIn, setIsLoggedIn] = React.useState(false); // State to manage login status
+
+    const auth = getAuth();
+
+    React.useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setIsLoggedIn(!!user);
+        });
+        return unsubscribe;
+    }, [auth]);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -117,6 +128,16 @@ export default function Navbar(props) {
 
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
+    };
+
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            setIsLoggedIn(false);
+            handleMenuClose();
+        } catch (error) {
+            console.error('Error signing out: ', error);
+        }
     };
 
     const handleChange = (event, newValue) => {
@@ -140,9 +161,14 @@ export default function Navbar(props) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem component={RouterLink} to="/signup" onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem component={RouterLink} to="/profile" onClick={handleMenuClose}>My account</MenuItem>
-
+            {isLoggedIn ? (
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            ) : (
+                <>
+                    <MenuItem component={RouterLink} to="/signup" onClick={handleMenuClose}>Profile</MenuItem>
+                    <MenuItem component={RouterLink} to="/profile" onClick={handleMenuClose}>My account</MenuItem>
+                </>
+            )}
         </Menu>
     );
 
@@ -191,18 +217,33 @@ export default function Navbar(props) {
                 </IconButton>
                 <p>Notifications</p>
             </MenuItem>
-            <MenuItem component={RouterLink} to="/signup" onClick={handleMobileMenuClose}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
+            {isLoggedIn ? (
+                <MenuItem onClick={handleLogout}>
+                    <IconButton
+                        size="large"
+                        aria-label="logout"
+                        aria-controls="primary-search-account-menu"
+                        aria-haspopup="true"
+                        color="inherit"
+                    >
+                        <AccountCircle />
+                    </IconButton>
+                    <p>Logout</p>
+                </MenuItem>
+            ) : (
+                <MenuItem component={RouterLink} to="/signup" onClick={handleMobileMenuClose}>
+                    <IconButton
+                        size="large"
+                        aria-label="account of current user"
+                        aria-controls="primary-search-account-menu"
+                        aria-haspopup="true"
+                        color="inherit"
+                    >
+                        <AccountCircle />
+                    </IconButton>
+                    <p>Profile</p>
+                </MenuItem>
+            )}
         </Menu>
     );
 
@@ -258,17 +299,32 @@ export default function Navbar(props) {
                                         <NotificationsIcon />
                                     </Badge>
                                 </IconButton>
-                                <IconButton
-                                    size="large"
-                                    edge="end"
-                                    aria-label="account of current user"
-                                    aria-controls={menuId}
-                                    aria-haspopup="true"
-                                    onClick={handleProfileMenuOpen}
-                                    color="inherit"
-                                >
-                                    <AccountCircle />
-                                </IconButton>
+                                {isLoggedIn ? (
+                                    <IconButton
+                                        size="large"
+                                        edge="end"
+                                        aria-label="account of current user"
+                                        aria-controls={menuId}
+                                        aria-haspopup="true"
+                                        onClick={handleProfileMenuOpen}
+                                        color="inherit"
+                                    >
+                                        <AccountCircle />
+                                    </IconButton>
+                                ) : (
+                                    <IconButton
+                                        size="large"
+                                        edge="end"
+                                        aria-label="account of current user"
+                                        aria-controls={menuId}
+                                        aria-haspopup="true"
+                                        component={RouterLink}
+                                        to="/signup"
+                                        color="inherit"
+                                    >
+                                        <AccountCircle />
+                                    </IconButton>
+                                )}
                             </Box>
                             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                                 <IconButton
