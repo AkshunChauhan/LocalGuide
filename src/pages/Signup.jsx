@@ -9,6 +9,8 @@ import {
     Typography,
     Stack,
     Link,
+    Snackbar,
+    Alert,
     createTheme,
     ThemeProvider
 } from '@mui/material';
@@ -56,6 +58,13 @@ function Copyright() {
 
 export default function SignUpPage() {
     const navigate = useNavigate(); // Hook for navigation
+    const [openSnackbar, setOpenSnackbar] = React.useState(false);
+    const [snackbarMessage, setSnackbarMessage] = React.useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = React.useState('success');
+
+    const handleCloseSnackbar = () => {
+        setOpenSnackbar(false);
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -65,41 +74,46 @@ export default function SignUpPage() {
         const confirmPassword = formElements.confirmPassword.value;
 
         if (password !== confirmPassword) {
-            alert('Passwords do not match');
+            setSnackbarMessage('Passwords do not match');
+            setSnackbarSeverity('error');
+            setOpenSnackbar(true);
             return;
         }
 
         try {
             await createUserWithEmailAndPassword(auth, email, password);
-            alert('Account created successfully');
+            setSnackbarMessage('Account created successfully');
+            setSnackbarSeverity('success');
+            setOpenSnackbar(true);
             setTimeout(() => {
                 navigate('/'); // Redirect to the home page
             }, 500); // 500ms delay
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
-                alert('This email is already in use. Redirecting to login page.');
+                setSnackbarMessage('This email is already in use. Redirecting to login page.');
+                setSnackbarSeverity('error');
+                setOpenSnackbar(true);
                 setTimeout(() => {
                     navigate('/login'); // Redirect to the login page
                 }, 500); // 500ms delay
             } else {
-                alert(`Error: ${error.message}`);
+                setSnackbarMessage(`Error`);
+                setSnackbarSeverity('error');
+                setOpenSnackbar(true);
             }
         }
     };
 
     const handleGoogleSignUp = async () => {
         const provider = new GoogleAuthProvider();
-        try {
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
-            alert('Signed up with Google');
-            console.log(user);
-            setTimeout(() => {
-                navigate('/'); // Redirect to the home page
-            }, 500); // 500ms delay
-        } catch (error) {
-            alert(`Error: ${error.message}`);
-        }
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        setSnackbarMessage('Signed up with Google');
+        setSnackbarSeverity('success');
+        setOpenSnackbar(true);
+        setTimeout(() => {
+            navigate('/'); // Redirect to the home page
+        }, 500); // 500ms delay
     };
 
     return (
@@ -204,6 +218,18 @@ export default function SignUpPage() {
                     </Box>
                 </Box>
             </Box>
+
+            {/* Snackbar for error and success messages */}
+            <Snackbar
+                open={openSnackbar}
+                autoHideDuration={6000}
+                onClose={handleCloseSnackbar}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </ThemeProvider>
     );
 }

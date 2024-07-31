@@ -14,7 +14,9 @@ import {
     Link,
     createTheme,
     ThemeProvider,
-    styled
+    styled,
+    Snackbar,
+    Alert,
 } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { auth } from '../firebase/firebase'; // Adjust the import path if needed
@@ -58,6 +60,9 @@ export default function SignInSideTemplate() {
     const [rememberMe, setRememberMe] = React.useState(false);
     const [emailForReset, setEmailForReset] = React.useState('');
     const [resettingPassword, setResettingPassword] = React.useState(false);
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+    const [snackbarMessage, setSnackbarMessage] = React.useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = React.useState('success');
 
     React.useEffect(() => {
         // Check local storage for the "Remember me" setting
@@ -76,27 +81,28 @@ export default function SignInSideTemplate() {
             await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
 
             await signInWithEmailAndPassword(auth, email, password);
-            alert('Signed in successfully');
+            setSnackbarMessage('Signed in successfully');
+            setSnackbarSeverity('success');
+            setSnackbarOpen(true);
             navigate('/'); // Redirect to the home page
         } catch (error) {
-            alert(`Error: ${error.message}`);
+            setSnackbarMessage(error.message);
+            setSnackbarSeverity('error');
+            setSnackbarOpen(true);
         }
     };
 
     const handleGoogleSignIn = async () => {
         const provider = new GoogleAuthProvider();
-        try {
-            // Set persistence based on the "Remember me" checkbox
-            await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
+        await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
 
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
-            alert('Signed in with Google');
-            console.log(user);
-            navigate('/'); // Redirect to the home page
-        } catch (error) {
-            alert(`Error: ${error.message}`);
-        }
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        setSnackbarMessage('Signed in with Google');
+        setSnackbarSeverity('success');
+        setSnackbarOpen(true);
+        console.log(user);
+        navigate('/'); // Redirect to the home page
     };
 
     const handleRememberMeChange = (event) => {
@@ -112,16 +118,29 @@ export default function SignInSideTemplate() {
         event.preventDefault();
         try {
             await sendPasswordResetEmail(auth, emailForReset);
-            alert('Password reset email sent! Please check your inbox.');
+            setSnackbarMessage('Password reset email sent! Please check your inbox.');
+            setSnackbarSeverity('success');
+            setSnackbarOpen(true);
             setResettingPassword(false);
         } catch (error) {
-            alert(`Error: ${error.message}`);
+            setSnackbarMessage(error.message);
+            setSnackbarSeverity('error');
+            setSnackbarOpen(true);
         }
+    };
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
     };
 
     return (
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
+            <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+                <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
             <Box
                 sx={{
                     display: 'flex',
