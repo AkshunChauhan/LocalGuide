@@ -94,7 +94,6 @@ export default function SignInSideTemplate() {
 
     const handleGoogleSignIn = async () => {
         const provider = new GoogleAuthProvider();
-        // Set persistence based on the "Remember me" checkbox
         await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
 
         const result = await signInWithPopup(auth, provider);
